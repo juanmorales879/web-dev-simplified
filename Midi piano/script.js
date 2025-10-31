@@ -19,14 +19,15 @@ const NOTE_DETAILS = [
 
 document.addEventListener("keydown", (e) => {
   const eventKey = e.keyCode;
+  const keyboard = e.code;
+  const detail = foundNote(keyboard);
+
   if (
     (eventKey >= 65 && eventKey <= 90) ||
     (eventKey >= 97 && eventKey <= 122)
   ) {
     if (e.repeat) return;
-    if (foundNote(e.code)) {
-      console.log("found");
-    }
+    console.log(detail);
   }
 
   //console.log(foundNote);
