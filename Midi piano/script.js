@@ -24,9 +24,14 @@ document.addEventListener("keydown", (e) => {
     (eventKey >= 97 && eventKey <= 122)
   ) {
     if (e.repeat) return;
-    const foundNote = NOTE_DETAILS.find((note) => `Key${note.key}` === e.code);
-    console.log(foundNote);
+    if (foundNote(e.code)) {
+      console.log("found");
+    }
   }
 
   //console.log(foundNote);
 });
+
+function foundNote(keys) {
+  return NOTE_DETAILS.find((note) => `Key${note.key}` === keys);
+}
