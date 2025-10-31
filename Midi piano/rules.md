@@ -1,35 +1,34 @@
+✔️ Make a single audio context when the page loads or on first user action. Keep a reference to it.
 
+✔️ Prepare a list of notes. For each item include:
 
-1. Make a single audio context when the page loads or on first user action. Keep a reference to it.
+- the musical name (e.g., C, D, …),
+- the keyboard key you want to trigger it with (Z, X, …),
+- its exact frequency,
+- a flag like “active” that starts as false.
+  Later, you’ll also attach a temporary “oscillator” reference to each item while it’s sounding.
 
-2. Prepare a list of notes. For each item include:
-
-   * the musical name (e.g., C, D, …),
-   * the keyboard key you want to trigger it with (Z, X, …),
-   * its exact frequency,
-   * a flag like “active” that starts as false.
-     Later, you’ll also attach a temporary “oscillator” reference to each item while it’s sounding.
-
-3. Listen for keydown events on the whole document.
+✔️ Listen for keydown events on the whole document.
 
 4. In keydown:
 
-   * If the event is an auto-repeat, ignore it.
-   * Read the physical key code (the form that looks like “KeyZ”, not the character).
-   * Find the matching note in your list by comparing that code to your stored key letter (i.e., “Key” + letter).
-   * If no match, do nothing.
-   * If there is a match, set that note’s “active” flag to true.
-   * Call a function that (re)computes what should be playing right now.
+   ✔️ If the event is an auto-repeat, ignore it.
+   ✔️ Read the physical key code (the form that looks like “KeyZ”, not the character).
+   ✔️ Find the matching note in your list by comparing that code to your stored key letter (i.e., “Key” + letter).
+
+   - If no match, do nothing.
+   - If there is a match, set that note’s “active” flag to true.
+   - Call a function that (re)computes what should be playing right now.
 
 5. Also listen for keyup events on the document.
 
 6. In keyup:
 
-   * Read the same physical key code.
-   * Find the matching note in your list.
-   * If none, do nothing.
-   * If found, set that note’s “active” flag to false.
-   * Call the same function that (re)computes what should be playing.
+   - Read the same physical key code.
+   - Find the matching note in your list.
+   - If none, do nothing.
+   - If found, set that note’s “active” flag to false.
+   - Call the same function that (re)computes what should be playing.
 
 7. Write a small helper that, given a key code, returns the matching note object from your list (or returns nothing if there’s no match).
 
@@ -37,9 +36,9 @@
 
 9. At the start of “playNotes,” loop over every note in your list:
 
-   * Grab the DOM element for that note (e.g., something like a key with a data attribute for the note name).
-   * Add or remove an “active” CSS class based on the note’s “active” flag to update visuals.
-   * If this note already has an oscillator reference from a previous play, stop that oscillator and disconnect it so it doesn’t keep sounding.
+   - Grab the DOM element for that note (e.g., something like a key with a data attribute for the note name).
+   - Add or remove an “active” CSS class based on the note’s “active” flag to update visuals.
+   - If this note already has an oscillator reference from a previous play, stop that oscillator and disconnect it so it doesn’t keep sounding.
 
 10. Still in “playNotes,” build a new list containing only the notes whose “active” flag is true.
 
