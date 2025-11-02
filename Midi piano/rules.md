@@ -16,7 +16,8 @@
    ✔️ Read the physical key code (the form that looks like “KeyZ”, not the character).
    ✔️ Find the matching note in your list by comparing that code to your stored key letter (i.e., “Key” + letter).
 
-   - If no match, do nothing.
+   ✔️If no match, do nothing.
+
    - If there is a match, set that note’s “active” flag to true.
    - Call a function that (re)computes what should be playing right now.
 

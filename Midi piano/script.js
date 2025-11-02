@@ -19,20 +19,43 @@ const NOTE_DETAILS = [
 
 document.addEventListener("keydown", (e) => {
   const eventKey = e.keyCode;
-  const keyboard = e.code;
-  const detail = foundNote(keyboard);
+  const keyClicked = e.code;
+  const keyDetail = foundNote(keyClicked);
 
   if (
     (eventKey >= 65 && eventKey <= 90) ||
     (eventKey >= 97 && eventKey <= 122)
   ) {
     if (e.repeat) return;
-    console.log(detail);
+    if (keyDetail == null) {
+      alert("Key not available");
+      return;
+    }
+    keyDetail.active = true;
+    playnotes();
   }
+});
 
-  //console.log(foundNote);
+document.addEventListener("keyup", (e) => {
+  const eventKey = e.keyCode;
+  const keyClicked = e.code;
+  const keyDetail = foundNote(keyClicked);
+
+  if (
+    (eventKey >= 65 && eventKey <= 90) ||
+    (eventKey >= 97 && eventKey <= 122)
+  ) {
+    if (keyDetail == null) {
+      alert("Key not available");
+      return;
+    }
+    keyDetail.active = false;
+    playnotes();
+  }
 });
 
 function foundNote(keys) {
   return NOTE_DETAILS.find((note) => `Key${note.key}` === keys);
 }
+
+function playnotes() {}
