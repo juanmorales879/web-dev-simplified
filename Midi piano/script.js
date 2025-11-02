@@ -58,4 +58,30 @@ function foundNote(keys) {
   return NOTE_DETAILS.find((note) => `Key${note.key}` === keys);
 }
 
-function playnotes() {}
+function playnotes() {
+  NOTE_DETAILS.forEach((n) => {
+    const el = document.querySelector(`[data-note=${n.note}]`);
+    el.classList.toggle("active", n.active);
+    if (n.oscillator != null) {
+      n.oscillator.stop();
+      n.oscillator.disconnect();
+    }
+  });
+
+  const activeNotes = NOTE_DETAILS.filter((n) => n.active);
+  const gain = 1 / activeNotes.length;
+  activeNotes.forEach((n) => {
+    startNotes(n, gain);
+  });
+}
+
+function startNotes(noteDetail, gain) {
+  const gainNode = audioContext.createGain();
+  gainNode.gain.value = gain;
+  const oscillator = audioContext.createOscillator();
+  oscillator.frequency.value = noteDetail.frequency;
+  oscillator.type = "sine";
+  oscillator.connect(gainNode).connect(audioContext.destination);
+  oscillator.start();
+  noteDetail.oscillator = oscillator;
+}
