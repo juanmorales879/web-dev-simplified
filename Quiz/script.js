@@ -9,11 +9,17 @@
 const form = document.querySelector("#quiz-form");
 const answers = Array.from(document.querySelectorAll(".answer"));
 const questions = document.querySelectorAll(".question-item");
-const hiddenAlert = document.querySelectorAll("#alert");
+const hiddenAlert = document.querySelector("#alert");
 let count = 0;
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+
+  questions.forEach((questionItem) => {
+    questionItem.classList.add("incorrect");
+    questionItem.classList.remove("correct");
+  });
+
   const checkedInputs = answers.filter((answer) => answer.checked);
 
   checkedInputs.forEach((input) => {
@@ -29,6 +35,16 @@ form.addEventListener("submit", (e) => {
       questionItem.classList.remove("correct");
     }
   });
+
+  const allCorrect = checkedInputs.every((i) => i.value === "true");
+  const allAnswered = checkedInputs.length === questions.length;
+
+  if (allCorrect && allAnswered) {
+    hiddenAlert.classList.add("active");
+    setTimeout(() => {
+      hiddenAlert.classList.remove("active");
+    }, 1000);
+  }
 });
 
 //    7. BONUS: If all answers are correct show the element with the id `alert` and hide it after one second (look into setTimeout) (use the class active to show the alert and remove the class to hide it)
