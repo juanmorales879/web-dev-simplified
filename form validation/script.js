@@ -1,6 +1,3 @@
-// TODO: Select all elements needed
-//    Use the HTML to figure out what classes/ids will work best for selecting each element
-
 const errorBox = document.querySelector(".errors");
 const errorList = document.querySelector(".errors-list");
 const form = document.querySelector("#form");
@@ -9,11 +6,11 @@ const username = document.querySelector("#username");
 const password = document.querySelector("#password");
 const passwordConfirmation = document.querySelector("#password-confirmation");
 const terms = document.querySelector("#terms");
+let errorMessages = [];
 const requiredUsernameLength = 6;
 const requiredPasswordLength = 10;
 
 form.addEventListener("submit", (e) => {
-  let errorMessages = [];
   clearErrors();
 
   if (username.value.length < requiredUsernameLength) {
@@ -34,18 +31,9 @@ form.addEventListener("submit", (e) => {
 
   if (errorMessages.length > 0) {
     e.preventDefault();
-    console.log("error");
+    showErrors();
   }
 });
-
-// TODO: Create an event listener for when the form is submitted and do the following inside of it.
-//    TODO: Create an array to store all error messages and clear any old error messages
-//    TODO: Define the following validation checks with appropriate error messages
-//      1. Ensure the username is at least 6 characters long
-//      2. Ensure the password is at least 10 characters long
-//      3. Ensure the password and confirmation password match
-//      4. Ensure the terms checkbox is checked
-//    TODO: If there are any errors then prevent the form from submitting and show the error messages
 
 // TODO: Define this function
 function clearErrors() {
@@ -57,8 +45,11 @@ function clearErrors() {
 }
 
 // TODO: Define this function
-function showErrors(errorMessages) {
-  // Add each error to the error-list element
-  // Make sure to use an li as the element for each error
-  // Also, make sure you add the show class to the errors container
+function showErrors() {
+  errorMessages.forEach((error) => {
+    const newLi = document.createElement("li");
+    newLi.textContent = error;
+    errorList.appendChild(newLi);
+  });
+  errorBox.classList.add("show");
 }
