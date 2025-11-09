@@ -11,7 +11,6 @@ const requiredPasswordLength = 10;
 
 form.addEventListener("submit", (e) => {
   const errorMessages = [];
-
   clearErrors();
 
   if (username.value.length < requiredUsernameLength) {
