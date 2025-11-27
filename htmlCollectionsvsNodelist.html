@@ -15,16 +15,16 @@
 <script>
   
   const nodeList = document.querySelectorAll("#list li");
-  console.log(nodeList, nodeList.length); // 2
+  console.log(nodeList, nodeList.length); // returns 2
   const htmlcollection = document.getElementById("list").getElementsByTagName("li");
-  console.log(htmlcollection, htmlcollection.length) //2
+  console.log(htmlcollection, htmlcollection.length) // returns 2
   
   const li = document.createElement("li");
   li.textContent = "Cherry";
   document.getElementById("list").appendChild(li);
 
-  console.log(nodeList, nodeList.length); //2
-  console.log(htmlcollection, htmlcollection.length) //3
+  console.log(nodeList, nodeList.length); // return 2
+  console.log(htmlcollection, htmlcollection.length) // return 3
   
  
 </script>
