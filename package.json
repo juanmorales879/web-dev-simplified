@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "date-fns": "^4.1.0"
+  },
+  "scripts":{
+    "start": "parcel date-picker/index.html"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
+}
